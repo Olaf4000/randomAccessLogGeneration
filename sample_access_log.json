@@ -1,0 +1,10 @@
+{
+  "timestamp": 1736517645656,
+  "action": "ALLOW",
+  "httpRequest": {
+    "clientIp": "126.65.201.12",
+    "country": "DE",
+    "uri": "/placeholder"
+  },
+  "host": "www.placeholder.de"
+}
