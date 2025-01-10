@@ -51,4 +51,5 @@ def generate_access_logs(amount_of_ips, amount_of_hosts, amount_of_anomalies, ma
             )
         )
 
+    random.shuffle(log_entrys)
     return log_entrys
