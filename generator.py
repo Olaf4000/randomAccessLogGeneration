@@ -1,5 +1,3 @@
-import json
-
 from access_log_generation import generate_access_logs
 
 amount_of_ips = 100
