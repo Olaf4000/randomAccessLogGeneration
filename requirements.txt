@@ -1,0 +1,1 @@
+python-dotenv==24.3.1

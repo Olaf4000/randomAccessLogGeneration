@@ -1,9 +1,14 @@
+from dotenv import load_dotenv
+import os
+
 from access_log_generation import generate_access_logs
 
-amount_of_ips = 10
-amount_of_hosts = 5
-amount_of_anomalies = 2
-max_occurrence = 20
+load_dotenv()
+
+amount_of_ips = os.getenv("AMOUNT_OF_IPS")
+amount_of_hosts = os.getenv("AMOUNT_OF_HOSTS")
+amount_of_anomalies = os.getenv("AMOUNT_OF_ANOMALIES")
+max_occurrence = os.getenv("MAX_OCCURRENCE")
 
 logs = generate_access_logs(
     amount_of_ips,
