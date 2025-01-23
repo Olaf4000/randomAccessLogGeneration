@@ -4,8 +4,6 @@ from shutil import Error
 import pandas as pd
 import hashlib
 
-from pandas import notnull
-
 # input / output names
 
 input_file_name = 'logs_to_anonymise.json'
