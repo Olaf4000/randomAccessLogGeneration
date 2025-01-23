@@ -1,10 +1,20 @@
+import sys
 from shutil import Error
 
 import pandas as pd
 import hashlib
 
-from numpy.f2py.auxfuncs import throw_error
+from pandas import notnull
 
+# input / output names
+
+input_file_name = 'logs_to_anonymise.json'
+output_file_name = 'logs_anonymised.json'
+
+user_input = sys.argv[1]
+
+if user_input is not None:
+    input_file_name = user_input
 
 # functions
 def sha256_hash(data: str) -> str:
@@ -12,7 +22,7 @@ def sha256_hash(data: str) -> str:
 
 # import and normalize data
 try:
-    logs_raw = pd.read_json('logs_to_anonymise.json')
+    logs_raw = pd.read_json(input_file_name)
 except Error as e:
     raise e
 
@@ -26,7 +36,7 @@ logs.drop(['httpRequest'], axis=1, inplace=True)
 for row in logs.itertuples():
     logs.at[row.Index, 'clientIp'] = sha256_hash(row[4])
 
-with open("logs_anonymised.json", "w") as file:
+with open(output_file_name, "w") as file:
     file.write(logs.to_json(orient='records'))
 
 file.close()
