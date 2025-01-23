@@ -15,7 +15,7 @@ def sha256_hash(data: str) -> str:
 
 # import and normalize data
 try:
-    logs_raw = pd.read_json(input_file_name)
+    logs_raw = pd.read_json(input_file_name, encoding='utf-8')
 except Error as e:
     raise e
 
