@@ -9,11 +9,6 @@ import hashlib
 input_file_name = 'logs_to_anonymise.json'
 output_file_name = 'logs_anonymised.json'
 
-user_input = sys.argv[1]
-
-if user_input is not None:
-    input_file_name = user_input
-
 # functions
 def sha256_hash(data: str) -> str:
     return hashlib.sha256(data.encode()).hexdigest()
