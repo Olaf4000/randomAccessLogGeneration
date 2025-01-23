@@ -12,14 +12,18 @@ logs = generate_access_logs(
     max_occurrence
 )
 
-with open('logs', 'w') as file:
+with open('../logs_ostyle', 'w') as file:
     for log in logs:
         file.write(log + '\n')
 
-with open("logs.json", "w") as file:
+file.close()
+
+with open("../logs.json", "w") as file:
     file.write('[')
 
     for log in logs:
         file.write(log + ',')
 
     file.write(']')
+
+file.close()
