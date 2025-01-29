@@ -1,29 +1,40 @@
-from access_log_generation import generate_access_logs
+#imports
+import csv
+import random
+import pandas as pd
+import numpy as np
+import ip_generation as ipgen
+import host_generation as hostgen
 
-amount_of_ips = 100
-amount_of_hosts = 10
-amount_of_anomalies = 2
-max_occurrence = 50
+# input variables
+min_amount = 100
+max_amount = 1000
+average_amount = 500
+distribution = 0 #TODO:may delete
+amount_of_anomaly = 4
+amount_of_client = 500
+amount_of_hoste = 5
+timestamp_min = 100000
+timestamp_max = 700000
 
-logs = generate_access_logs(
-    amount_of_ips,
-    amount_of_hosts,
-    amount_of_anomalies,
-    max_occurrence
-)
+# generation
+with open("logs.csv", mode="w") as file:
+    file.write('timestamp, action, host, clientIp, country, uri' + '\n')
 
-with open('../logs_ostyle', 'w') as file:
-    for log in logs:
-        file.write(log + '\n')
+    for i in range(amount_of_hoste):
+        host = str(hostgen.generate_random_host())
 
-file.close()
+        for j in range(amount_of_client):
+            client_ip = str(ipgen.generate_random_ip())
+            amount_of_requests = int(random.uniform(min_amount, max_amount))
 
-with open("../logs.json", "w") as file:
-    file.write('[')
-
-    for log in logs:
-        file.write(log + ',')
-
-    file.write(']')
-
-file.close()
+            for k in range(amount_of_requests):
+                timestamp = int(random.uniform(timestamp_min, timestamp_max))
+                file.write(
+                    str(timestamp) + ',' +
+                    'ALLOW' + ',' +
+                    str(host) + ',' +
+                    str(client_ip) + ',' +
+                    'DE' + ',' +
+                    '/placeholder' + '\n'
+                )
