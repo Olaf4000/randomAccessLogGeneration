@@ -44,9 +44,24 @@ with open("logs.csv", mode="w") as file:
                 )
 
         #generate high request anomaly
-        for j in range(amount_of_anomaly):
+        for j in range(int(amount_of_anomaly / 2)):
             client_ip = str(ipgen.generate_random_ip())
             amount_of_requests = int((random.uniform(min_amount, max_amount)) + max_amount)
+
+            for k in range(amount_of_requests):
+                timestamp = random_timestamp()
+                file.write(
+                    str(timestamp) + ',' +
+                    'ALLOW' + ',' +
+                    str(host) + ',' +
+                    str(client_ip) + ',' +
+                    'DE' + ',' +
+                    '/placeholder' + '\n'
+                )
+
+        for j in range(int(amount_of_anomaly / 2)):
+            client_ip = str(ipgen.generate_random_ip())
+            amount_of_requests = int((random.uniform(min_amount, max_amount)) - min_amount)
 
             for k in range(amount_of_requests):
                 timestamp = random_timestamp()
